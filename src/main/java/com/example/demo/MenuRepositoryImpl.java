@@ -28,7 +28,7 @@ public class MenuRepositoryImpl implements MenuRepository {
 		query.setParameter("category_code", categoryCode);
 		@SuppressWarnings("unchecked")
 		List<Menu> list = query.getResultList();
-		return list;
+		return list;//S
 	}
 
 	public List<Menu> findByKeyword(String keyword) {
