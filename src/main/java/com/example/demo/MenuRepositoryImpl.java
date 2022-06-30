@@ -19,7 +19,7 @@ public class MenuRepositoryImpl implements MenuRepository {
 		Query query = em.createNativeQuery(sql, Menu.class);
 		@SuppressWarnings("unchecked")
 		List<Menu> list = query.getResultList();
-		return list;
+		return list;//
 	}
 
 	public List<Menu> findByCategoryCode(int categoryCode) {
