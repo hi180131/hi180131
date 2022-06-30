@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+<meta charset="UTF-8">
+<title>kookpad</title>
+</head>
+<body>
+<form action="/user/add" method="post">
+	名前：<input type="text" name="name" placeholder="名前">
+	<br>
+	メールアドレス：<input type="email" name="email" placeholder="メールアドレス">
+	<br>
+	パスワード：<input type="password" name="password" placeholder="パスワード">
+	<br>
+	<br>
+	<span th:text="${message}" style="color:red"></span>
+	<input type="submit" value="登録">
+</form>
+
+<a href="/user/login/check">ログイン</a>
+
+</body>
+</html>

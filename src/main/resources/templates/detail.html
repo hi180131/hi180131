@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>kookpad</title>
+</head>
+<body>
+	<span th:text="${titleMenu.userName}"></span>
+	<h2 th:text="${titleMenu.menuName}"></h2>
+	<span th:text="${titleMenu.comment}"></span>
+	<br>
+	<img th:src="'/image/'+${titleMenu.image}"> 
+	<br>
+	材料
+	<br>
+
+	<table border="0">
+		<tr th:each="menuMaterial:${menuMaterials}">
+			<td th:text="${menuMaterial.name}"></td>
+			<td th:text="${menuMaterial.num}"></td>
+		</tr>
+	</table>
+	
+	<table border="0">
+		<tr th:each="recipe:${recipes}">
+			<th th:text="${recipe.recipeOrder}"></td>
+			<td th:text="${recipe.recipeDetail}"></td>
+		</tr>
+	</table>
+	
+	
+	
+</body>
+</html>

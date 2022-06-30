@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>kookpad</title>
+</head>
+<body>
+	<a th:each="category:${categories}"
+		th:href="'/cooks/category/'+${category.categoryCode}"> <span th:text="${category.name}"></span>
+	</a>
+
+	<span th:if="${session.user == null}">
+	<a href="/user/login/post">投稿</a>
+	</span>
+	<span th:if="${session.user != null}">
+	<a href="/recipe/postRecipe">投稿</a>
+	</span>
+	<span th:if="${session.user == null}">
+	<a href="/user/login/check">ログイン</a>
+	</span>
+	<span th:if="${session.user != null}">
+	<a href="/user/myPage">マイページ</a>
+	<a href="/user/logout">ログアウト</a>
+	</span>
+	<span th:if="${session.user == null}">
+	<a href="/user/add">新規登録</a>
+	</span>
+
+	<br>
+	<form action="/cooks/search">
+	<input type="text" name="keyword">
+	<input type="submit" value="検索">
+	</form>
+
+	<table border="0">
+		<tr th:each="menu:${menus}">
+			<td><a th:href="'/cooks/detail/'+${menu.menuCode}"><img th:src="'/image/'+${menu.image}"></a></td>
+			<td th:text="${menu.name}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>kookpad</title>
+</head>
+<body>
+<h2>マイページ</h2>
+<!-- 自分のメニューを一覧表示(削除機能) -->
+<table border="0">
+		<tr th:each="menu:${menus}">
+			<td><a th:href="'/cooks/detail/'+${menu.menuCode}"><img
+					th:src="'/image/'+${menu.image}"></a></td>
+			<td th:text="${menu.name}"></td>
+			<td>
+			<form action="/user/menu/delete" method="post">
+			<input type="submit" name="menuCode" th:value="${menu.menuCode}">
+			</form>
+			</td>
+		</tr>
+	</table>
+	<form action="/user/delete" method="post">
+	<input type="submit" name="user" th:value="${session.user}">
+	</form>
+
+</body>
+</html>

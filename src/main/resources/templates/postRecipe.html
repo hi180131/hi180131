@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>kookpad</title>
+</head>
+<body>
+	<h2>レシピ投稿</h2>
+	<span th:text="${message}" style="color:red"></span>
+	<form action="/recipe/postRecipe" method="POST" enctype="multipart/form-data">
+		<p>
+			<input type="text" name="recipeName" placeholder="料理名">
+		</p>
+		<!-- <p>
+			<input type="file" name="recipeImage"  accept="image/jpeg">
+		</p> -->
+		<p>
+			<input type="text" name="recipeComment" placeholder="コメント">
+		</p>
+		<p>
+			<select name="recipeCategory">
+				<option hidden=>カテゴリ選択</option>
+				<option th:each="category:${categories}"
+					th:value="${category.categoryCode}" th:text="${category.name}"></option>
+			</select>
+		</p>
+		<table id="materialTable">
+			<tr>
+				<th>材料</th>
+				<th>数量</th>
+			</tr>
+			<tr>
+				<td><input type="text" name="materialName" placeholder="材料"></td>
+				<td><input type="text" name="materialNum" placeholder="数量"></td>
+				<td></td>
+			</tr>
+		</table>
+		<input type="button" name="addMaterialButton" value="材料追加"
+			onClick="addMaterial()"> <br> <br>
+		<table id="recipeTable">
+			<tr>
+				<th>レシピ手順</th>
+			</tr>
+			<tr>
+				<td>1.<textarea name="recipeDetail" placeholder="作り方" rows="2"></textarea></td>
+			</tr>
+		</table>
+		<input type="button" name="addRecipeButton" value="手順追加"
+			onClick="addRecipe()">
+		<p>
+			<input type="submit" value="投稿">
+		</p>
+	</form>
+	<script>
+		function addMaterial() {
+			var materialNameHTML = "<input type='text' name='materialName' placeholder='材料'>";
+			var materialNumHTML = "<input type='text' name='materialNum' placeholder='数量'>";
+
+			var table = document.getElementById("materialTable");
+			var row = table.insertRow(-1);
+			var len = table.rows.length;
+
+			var materialNameCell = row.insertCell(-1);
+			var materialNumCell = row.insertCell(-1);
+			materialNameCell.innerHTML = materialNameHTML;
+			materialNumCell.innerHTML = materialNumHTML;
+		}
+
+		var count = 2;
+
+		function addRecipe() {
+			var recipeDetailHTML = count
+					+ ".<textarea name='recipeDetail' placeholder='作り方'></textarea>";
+
+			var table = document.getElementById("recipeTable");
+			var row = table.insertRow(-1);
+			var len = table.rows.length;
+
+			var recipeDetailCell = row.insertCell(-1);
+			recipeDetailCell.innerHTML = recipeDetailHTML;
+			count++;
+		}
+	</script>
+
+
+
+</body>
+</html>
