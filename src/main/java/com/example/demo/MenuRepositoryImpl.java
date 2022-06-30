@@ -27,7 +27,7 @@ public class MenuRepositoryImpl implements MenuRepository {
 		Query query = em.createNativeQuery(sql, Menu.class);
 		query.setParameter("category_code", categoryCode);
 		@SuppressWarnings("unchecked")
-		List<Menu> list = query.getResultList();
+		List<Menu> list = query.getResultList();//
 		return list;//S
 	}
 
